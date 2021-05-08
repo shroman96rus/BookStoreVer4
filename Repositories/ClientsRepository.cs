@@ -35,7 +35,7 @@ namespace BookStoreVer4.Repositories
         //Будут реализованы позже
         public IEnumerable<Client> get()
         {
-            throw new NotImplementedException();
+            return context.clients;
         }
 
         public Client GetClient(int id)

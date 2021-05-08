@@ -1,0 +1,32 @@
+﻿
+@using BookStoreVer4.Models.Clients
+
+@model BookStoreVer4.ModelView.LoginModel
+
+@{
+    ViewData["Title"] = "Проверка пользователя";
+}
+
+
+<form asp-action="Login" asp-controller="Account">
+
+    <h1 class="h3 mb-3 fw-normal">Пожалуйста войдите в свою учетную запись</h1>
+
+    <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label asp-for="@Model.email">Email address</label>
+    </div>
+    <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label asp-for="@Model.password ">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+</form>
+
+<div class="container">
+    <a asp-action="Register" asp-controller="Account">Зарегистрироваться</a>
+</div>
+
+

@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Security.Claims
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <script data-require="jquery" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-     
+
 </head>
 
 <body>
@@ -18,7 +19,7 @@
                 <div class="container">
                     <div class="nav__row">
                         <div class="nav__logo">
-                            <a href=""><img src="/Img/IndexLayout/books logo.png" alt="Магазин книг"></a>
+                            <a asp-action="Index" asp-controller="Home"><img src="/Img/IndexLayout/books logo.png" alt="Магазин книг"></a>
                         </div>
                         <div class="nav__desctiption_site">
                             Данный сайт представлен в учебных и демонстрационных целях.
@@ -26,28 +27,38 @@
                             Он создавался для понимания принципов создания web приложений
                             и демонстрации своих возможностей
                         </div>
-                        <div class="nav__user">
-                            <div class="nav__userRow">
-                                <div class="nav__userName">
-                                    Name user
-                                </div>
-                                <div class="nav__userLogout">
-                                    Выйти из системы
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav__basket">
-                            <a href="">
-                                <div class="nav__basketRow">
-                                    <div class="nav__basketLogo">
-                                        <img src="/Img/IndexLayout/shopping-basket.png" alt="Посмотреть корзину" class="nav__basketImg">
-                                    </div>
-                                    <div class="nav__basketText">
-                                        Открыть корзину
+
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="nav__user">
+                                    <div class="nav__userRow">
+                                        <div class="nav__userName">
+                                            @User.Identity.Name
+                                        </div>
+                                        <div class="nav__userLogout">
+                                            <a asp-action="Logout" asp-controller="Account">Выйти из системы</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                                <div class="nav__basket">
+                                    <a href="">
+                                        <div class="nav__basketRow">
+                                            <div class="nav__basketLogo">
+                                                <img src="/Img/IndexLayout/shopping-basket.png" alt="Посмотреть корзину" class="nav__basketImg">
+                                            </div>
+                                            <div class="nav__basketText">
+                                                Открыть корзину
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {<div class="nav__user"> <a asp-action="Login" asp-controller="Account">Авторизация</a> </div> }
+                        }
+
+
+
 
                     </div>
                 </div>
@@ -63,7 +74,7 @@
         <div class="container">
             <div class="footer__row">
                 <div class="footer__text">
-                     Шихов Р.В. 2021г.
+                    Шихов Р.В. 2021г.
                 </div>
             </div>
         </div>

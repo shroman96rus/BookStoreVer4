@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BookStoreVer4.Interfaces;
 using BookStoreVer4.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace BookStoreVer4
 {
@@ -30,7 +32,20 @@ namespace BookStoreVer4
         {
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreContext>(options => options.UseMySql((Configuration["ConnectionStrings:DefaultConnection"])));
+            services.AddTransient<IClients, ClientsRepository>();
             services.AddTransient<IBooks, BooksRepository>();
+
+            //Аутентификация
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            });
+            //Авторизация
+            services.AddAuthorization(opts =>
+            {
+                opts.AddPolicy("Client", policy => { policy.RequireClaim(ClaimTypes.Role); });
+                opts.AddPolicy("Saller", policy => { policy.RequireClaim(ClaimTypes.Role, "Saller"); });
+            });
 
         }
 

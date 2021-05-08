@@ -1,5 +1,6 @@
 ﻿using BookStoreVer4.Interfaces;
 using BookStoreVer4.Models.Books;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,10 @@ using System.Threading.Tasks;
 
 namespace BookStoreVer4.Controllers
 {
+    [Authorize(Policy = "Saller")]
     public class SallerController : Controller
     {
-
+       
         private readonly IBooks Books;
         readonly IWebHostEnvironment _appEnvironment;
 
