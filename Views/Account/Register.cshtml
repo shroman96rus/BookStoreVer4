@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model BookStoreVer4.ModelView.RegisterModel
+
+<h3 class="h3 mb-3 fw-normal">Регистрация нового скиента</h3>
+
+<div class="container justify-content-end border-success" >
+    <form class="mt-2" asp-action="Register" asp-controller="Account">
+
+        <div class="row g-3 w-75 justify-content-center">
+            <div class="col">
+                <label class="form-label" asp-for="@Model.firstName">Имя</label>
+                <input asp-for="@Model.firstName" type="text" class="form-control" placeholder="Имя" aria-label="Имя">
+            </div>
+            <div class="col">
+                <label class="form-label" asp-for="@Model.lastName">Фамилия</label>
+                <input asp-for="@Model.lastName" type="text" class="form-control" placeholder="Фамилия" aria-label="Фамилия">
+            </div>
+            
+        </div>
+        <div class="row g-3 mt-3 w-50">
+            <div class="col">
+                <label class="form-label" asp-for="@Model.email">email</label>
+                <input asp-for="@Model.email" type="text" class="form-control" placeholder="email" aria-label="email">
+            </div>
+
+            <div class="col">
+                <label class="form-label" asp-for="@Model.phoneNumber">Телефон</label>
+                <input asp-for="@Model.phoneNumber" type="tel" class="form-control" placeholder="Телефон" >
+            </div>
+        </div>
+        <div class="row g-3 mt-3 w-50 justify-content-center">
+            <div class="col">
+                <label class="form-label" asp-for="@Model.Password">Пароль</label>
+                <input asp-for="@Model.Password" type="password" class="form-control" placeholder="Пароль" aria-label="Пароль">
+            </div>
+
+            <div class="col">
+                <label class="form-label" asp-for="@Model.confirmPassword">Подтверждение пароля</label>
+                <input asp-for="@Model.confirmPassword" type="password" class="form-control" placeholder="Подтверждение пароля" aria-label="Подтверждение пароля">
+            </div>
+        </div>
+
+        <div class="row">
+            <button class=" mt-3 btn btn-primary" type="submit">Sign in</button>
+        </div>
+
+    </form>
+</div>
+

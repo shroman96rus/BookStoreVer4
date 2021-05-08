@@ -17,7 +17,7 @@ namespace BookStoreVer4.Models.Clients
 
         public string email { get; set; }
 
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
 
         public string clientRole { get; set; }
     }

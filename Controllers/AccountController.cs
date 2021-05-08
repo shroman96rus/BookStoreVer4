@@ -37,7 +37,7 @@ namespace BookStoreVer4.Controllers
                 if (client != null)
                 {
                     await Authenticate(client);
-                    RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             ModelState.AddModelError("Login", "Некорректные логин и(или) пароль");
@@ -46,12 +46,25 @@ namespace BookStoreVer4.Controllers
 
         private async Task Authenticate(Client autentifiateClient)
         {
-             //создаем один claim
-            var claims = new List<Claim>
+            var claims = new List<Claim>();
+            //создаем один claim
+            if (autentifiateClient.clientRole != null)
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, autentifiateClient.email),
-                new Claim(ClaimTypes.Role, autentifiateClient.clientRole)
-            };
+
+                claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, autentifiateClient.email));
+                claims.Add(new Claim(ClaimTypes.Name, autentifiateClient.firstName));
+                claims.Add(new Claim(ClaimTypes.Role, autentifiateClient.clientRole));
+                        
+
+            }
+            
+            else 
+            {
+                claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, autentifiateClient.email));
+                claims.Add(new Claim(ClaimTypes.Name, autentifiateClient.firstName));
+                
+            }
+
              //создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки

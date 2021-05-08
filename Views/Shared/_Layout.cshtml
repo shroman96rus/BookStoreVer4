@@ -33,7 +33,7 @@
                                 <div class="nav__user">
                                     <div class="nav__userRow">
                                         <div class="nav__userName">
-                                            @User.Identity.Name
+                                            @User.FindFirst(i => i.Type == ClaimTypes.Name).Value
                                         </div>
                                         <div class="nav__userLogout">
                                             <a asp-action="Logout" asp-controller="Account">Выйти из системы</a>

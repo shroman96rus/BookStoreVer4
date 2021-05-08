@@ -149,8 +149,8 @@ form button:hover{
 }
 
 .nav__desctiption_site{
-    max-width: 60%;
-    flex-basis: auto;
+    
+    flex-basis: 50%;
     flex-grow: 1;
     flex-shrink: 1;
     margin-bottom: 10px;

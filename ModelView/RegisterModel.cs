@@ -27,7 +27,7 @@ namespace BookStoreVer4.ModelView
         public string email { get; set; }
 
         [Required(ErrorMessage = "Вы не указали номер телефна")]
-        [DataType(DataType.PhoneNumber)]
-        public int phoneNumber { get; set; }
+        //[DataType(DataType.PhoneNumber)]
+        public string phoneNumber { get; set; }
     }
 }
