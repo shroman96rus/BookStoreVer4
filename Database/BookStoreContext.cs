@@ -1,5 +1,6 @@
 ﻿using BookStoreVer4.Models.Books;
 using BookStoreVer4.Models.Clients;
+using BookStoreVer4.Models.Purchases;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,9 @@ namespace BookStoreVer4.Database
 
         //Подключение к таблице клиентов
         public DbSet<Client> clients { get; set; }
+
+        //Подключенеи к таблицам города и покупки
+        public DbSet<City> cities { get; set; }
+        public DbSet<Buy> buys { get; set; }
     }
 }
