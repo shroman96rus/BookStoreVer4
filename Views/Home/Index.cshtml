@@ -1,0 +1,67 @@
+﻿
+@using BookStoreVer4.Models.Books
+@model IQueryable<Book>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Магазин книг</title>
+    <script data-require="jquery" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/BuyBooks.css" />
+
+</head>
+
+<div class="container books__row">
+    <section class="genree">
+        <div class="genree__title">
+            <h4>Выбор жанра</h4>
+        </div>
+        <ul class="genree__list">
+            <li>Фантастика</li>
+            <li>Роман</li>
+            <li>Поэма</li>
+            <li>Биография</li>
+            <li>Детектив</li>
+        </ul>
+    </section>
+    <section class="books">
+        <article class="books__title">
+            <h2>Список книг доступных для покупки</h2>
+        </article>
+        <div class="books__change">
+            @foreach (var item in Model)
+            {
+                <div class="books__element">
+                    <div class="books__element_title">
+                        <h4><a asp-controller="Home" asp-action="BookDetail" asp-route-id="@item.bookId">@item.title</a></h4>
+                    </div>
+                    <div class="books__element_image">
+                        <img src="@item.imagePath " alt="@item.title">
+                    </div>
+                    <div class="books__element_author">
+                        @item.Author.nameAuthor
+                    </div>
+                    <div class="books__element_price"> @item.price руб.</div>
+                    <div class="books__element_buy">
+                        <form class="books__element_buy_form" action="">
+                            <div>
+                                <label for="">Количество книг @item.amout</label>
+                            </div>
+                            <div>
+                                <input type="number">
+                            </div>
+                            <div>
+                                <button type="button">Купить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </section>
+</div>
+
+

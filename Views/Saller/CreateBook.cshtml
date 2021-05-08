@@ -1,0 +1,68 @@
+﻿
+@model BookStoreVer4.Models.Books.Book
+
+
+@{
+    ViewData["Title"] = "Добавление новой книги";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    main {
+        display: block;
+    }
+    input{ width: auto;}
+</style>
+
+<h3>Добавление новой книги</h3>
+<p>Для добавления новой книги заполните все поля</p>
+
+<form asp-controller="Saller" asp-action="CreateBook" enctype="multipart/form-data" method="post">
+    <div class="mb-3">
+        <label asp-for="@Model.title" class="form-label">Название книги</label>
+        <input asp-for="@Model.title" type="text" class="form-control" placeholder="Название книги">
+    </div>
+    <div class="mb-3">
+        <label asp-for="bookDescription" class="form-label">Краткое описание книги</label>
+        <textarea asp-for="bookDescription" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.price" class="form-label">Стоимость одной книги</label>
+        <input asp-for="@Model.price" type="number" class="form-control" placeholder="0.00">
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.amout" class="form-label">Количество книг</label>
+        <input asp-for="@Model.amout" type="number" class="form-control" placeholder="0">
+    </div>
+    <div>
+        <select class="form-select" asp-for="@Model.authorId ">
+            <option selected>Выберите автора</option>
+            <option value="1">Сергей Есенин</option>
+            <option value="2">Кристина Старк</option>
+            <option value="3">Артур Дойл</option>
+        </select>
+    </div>
+    <div>
+        <select class="form-select" asp-for="@Model.genreId ">
+            <option selected>Выберите автора</option>
+            <option value="1">Поэзия</option>
+            <option value="2">Детектив</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Загрузите cover книги</label>
+        <input class="form-control" name="uploadedFile" type="file" id="formFile">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-success" />
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Saller" asp-action="Index">Вернуться на главную страницу</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

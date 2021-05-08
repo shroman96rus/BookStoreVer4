@@ -1,0 +1,57 @@
+﻿
+<head>
+    <link rel="stylesheet" href="~/css/StyleSellerIndex.css" />
+</head>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using BookStoreVer4.Models.Books
+
+@model IQueryable<Book>
+
+
+<div class="text-center">
+    <h1 class="display-4">Добро пожаловать</h1>
+    <p>Вы находитесь в моей учебной программе по созданию интернет магазина по продаже книг </p>
+    <p>Не судите строго пока не очень красиво, но скоро все будет тип топ)))</p>
+</div>
+
+<div>
+    <a asp-controller="Saller" asp-action="CreateBook">Создать книгу</a>
+</div>
+
+<div class="Table_Book">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Автор</th>
+                <th>Жанр</th>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Цена</th>
+                <th>Остаток</th>
+                <th>Путь к cover</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.Author.nameAuthor</td>
+                <td>@item.Genre.nameGenre</td>
+                <td>@item.title</td>
+                <td>@item.bookDescription</td>
+                <td>@item.price</td>
+                <td>@item.amout</td>
+                <td>@item.imagePath</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

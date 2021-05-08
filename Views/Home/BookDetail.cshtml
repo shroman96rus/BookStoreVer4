@@ -1,0 +1,33 @@
+﻿
+@model BookStoreVer4.Models.Books.Book
+
+    <head>
+        <link rel="stylesheet" href="~/css/BuyBooks.css" />
+    </head>
+
+    <div class="buy">
+        <div class="container">
+            <div class="buy__grid">
+                <div class="buy__title">
+                    <h2>@Model.Author.nameAuthor: @Model.title</h2>
+                </div>
+                <div class="buy__logo">
+                    <img src="@Model.imagePath " alt="@Model.title">
+                </div>
+                <div class="buy__description">
+                    <p>
+                        @Model.bookDescription
+                    </p>
+                </div>
+                <div class="buy__count_book">Количество экземпляров на складе: @Model.amout шт</div>
+                <div class="buy__price">Стоимость одной книги: @Model.price руб</div>
+                <div class="by__order">
+                    <form action="" class="buy__order">
+                        <label for="" class="buy__order_label">Количество штук для заказа</label>
+                        <input type="number" class="buy__order_input">
+                        <button class="buy__order_button">Оформить покупку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

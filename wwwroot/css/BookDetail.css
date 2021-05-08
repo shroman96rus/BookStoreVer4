@@ -1,0 +1,62 @@
+﻿
+main{
+    display:block;
+}
+
+.buy {
+    font-size: 14px;
+}
+
+.buy__grid {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-auto-rows: minmax(30px, auto);
+}
+
+.buy__title {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.buy__logo {
+    grid-row: 2/7;
+}
+
+.buy__description {
+    grid-column: 2 / 3;
+    grid-row: 4;
+}
+
+.buy__count_book {
+    grid-row: 2;
+}
+
+.buy__price {
+    grid-row: 3;
+}
+
+.buy__order_label {
+    margin-top: 20px;
+    font-size: 20px;
+    display: block;
+}
+
+.buy__order_input {
+    display: block;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    box-shadow: inset 5px 5px 10px yellow;
+    border: 3px solid yellow;
+    border-radius: 20px;
+}
+
+.buy__order_button {
+    margin-top: 10px;
+    background: none;
+    font-size: 14px;
+    color: white;
+    padding: 5px 10px;
+    background: grey;
+    border-radius: 20px;
+}

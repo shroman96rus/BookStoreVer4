@@ -1,0 +1,55 @@
+﻿.books__row {
+    display: flex;
+    flex-direction: row;
+}
+
+.genree {
+    padding: 15px 10px;
+    flex: 0 1 10%;
+}
+
+.genree__title {
+    padding-bottom: 5px;
+}
+
+.genree__list li {
+    padding: 5px 0px;
+}
+
+.books {
+    padding: 15px 10px;
+    flex: 0 1 90%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+
+.books__title {
+    padding-bottom: 10px;
+    font-size: 12px;
+}
+
+.books__change {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -15px;
+}
+
+.books__element {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    flex: 0 1 15%;
+    border-radius: 30px 10px 30px 10px;
+    border: 2px solid grey;
+}
+
+    .books__element div {
+        padding: 4px;
+    }
+
+
+
+.books__element_image img {
+    max-width: 150px;
+}
