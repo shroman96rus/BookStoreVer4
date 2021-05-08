@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Security.Claims
 @using BookStoreVer4.Models.Books
 @model IQueryable<Book>
 
@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="~/css/BuyBooks.css" />
 
 </head>
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "saller")
+    {
+
+        <a asp-controller="Saller" asp-action="index">Открыть режим управления книгами и заказами </a>
+    }
+}
+
 
 <div class="container books__row">
     <section class="genree">

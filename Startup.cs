@@ -44,7 +44,7 @@ namespace BookStoreVer4
             services.AddAuthorization(opts =>
             {
                 opts.AddPolicy("Client", policy => { policy.RequireClaim(ClaimTypes.Role); });
-                opts.AddPolicy("Saller", policy => { policy.RequireClaim(ClaimTypes.Role, "Saller"); });
+                opts.AddPolicy("saller", policy => { policy.RequireClaim(ClaimTypes.Role, "saller"); });
             });
 
         }

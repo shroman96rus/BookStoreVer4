@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BookStoreVer4.Controllers
 {
-    [Authorize(Policy = "Saller")]
+    [Authorize(Policy = "saller")]
     public class SallerController : Controller
     {
        

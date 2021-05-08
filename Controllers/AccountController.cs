@@ -62,7 +62,8 @@ namespace BookStoreVer4.Controllers
             {
                 claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, autentifiateClient.email));
                 claims.Add(new Claim(ClaimTypes.Name, autentifiateClient.firstName));
-                
+                claims.Add(new Claim(ClaimTypes.Role, autentifiateClient.clientRole));
+
             }
 
              //создаем объект ClaimsIdentity
@@ -91,7 +92,8 @@ namespace BookStoreVer4.Controllers
                         lastName = model.lastName,
                         clientPassword = model.Password,
                         email = model.email,
-                        phoneNumber = model.phoneNumber
+                        phoneNumber = model.phoneNumber,
+                        clientRole = "Buyer"
 
                     };
                     clients.Create(newClient);
