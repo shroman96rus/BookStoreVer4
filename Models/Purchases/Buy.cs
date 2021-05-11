@@ -19,6 +19,8 @@ namespace BookStoreVer4.Models.Purchases
 
         public string buyDescription { get; set; }
 
+        public int amount { get; set; }
+
         public virtual Book Book { get; set; }
 
         public virtual Client Client { get; set; }

@@ -1,0 +1,69 @@
+﻿
+@model BookStoreVer4.ModelView.OrderModel
+
+
+@{
+    ViewData["Title"] = "Ваш заказ";
+}
+
+<h2 class="display-3">Давайте закажем книгу</h2>
+
+<div class="container mt-2 mb-3">
+    <p>Для оформления книги вам необходимо заполниь несколько полей</p>
+</div>
+<div class="container border">
+    <form asp-action="Order" asp-controller="Buy" method="post">
+        <input class="hide" type="hidden" asp-for="@Model.order.clientid" value="@Model.client.clientid" />
+        <input class="hide" type="hidden" asp-for="@Model.order.bookId " value="@Model.changeBook.bookId" />
+        <div class="row border">
+            <div class="col-sm-2 border p-3">
+                Уважаемый @Model.client.firstName @Model.client.lastName
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 p-3 border">
+                Вы заказали  @Model.changeBook.Author.nameAuthor: @Model.changeBook.title
+            </div>
+            <div class="col-sm-5 p-3">
+                Стоимость одной книги составляет: @Model.changeBook.price
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Вы хотите купить @Model.bookAmount штук
+                <input class="hide" type="hidden" asp-for="@Model.order.amount " value="@Model.bookAmount" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                Пожалуйста выберите город в который вы ходите доставить заказ:
+            </div>
+            <div class="col-10">
+                <div class="row">
+
+                    @foreach (var item in Model.cities)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="@Model.order.cityid" value="@item.cityid">
+                            <label class="form-check-label" asp-for="@item.cityName">
+                                @item.cityName
+                            </label>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="mb-3">
+                    <label asp-for="@Model.order.buyDescription" class="form-label">Напишите комментарий к заказу</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" asp-for="@Model.order.buyDescription "></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+        </div>
+    </form>
+</div>

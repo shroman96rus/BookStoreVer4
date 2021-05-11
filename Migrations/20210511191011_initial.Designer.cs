@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStoreVer4.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    [Migration("20210508200542_addBuy")]
-    partial class addBuy
+    [Migration("20210511191011_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,9 @@ namespace BookStoreVer4.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
+
                     b.Property<int>("bookId")
                         .HasColumnType("int");
 
@@ -137,7 +140,7 @@ namespace BookStoreVer4.Migrations
 
                     b.HasIndex("clientid");
 
-                    b.ToTable("buys");
+                    b.ToTable("buy");
                 });
 
             modelBuilder.Entity("BookStoreVer4.Models.Purchases.City", b =>

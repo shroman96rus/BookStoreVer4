@@ -1,6 +1,7 @@
 ﻿using BookStoreVer4.Database;
 using BookStoreVer4.Interfaces;
 using BookStoreVer4.Models.Purchases;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +16,32 @@ namespace BookStoreVer4.Repositories
         public BuyRepository(BookStoreContext context)
         {
             this.context = context;
+            context.buy.Include(i => i.Book).Load();
+            context.buy.Include(i => i.City).Load();
+            context.buy.Include(i => i.Client).Load();
+            context.buy.Include(i => i.Book.Author).Load();
+            context.buy.Include(i => i.Book.Genre).Load();
         }
 
         public void CreateOrder(Buy buy)
         {
-            context.buys.Add(buy);
+            context.buy.Add(buy);
             context.SaveChanges();
         }
 
         public Buy GetOrder(int id)
         {
-            return context.buys.Find(id);
+            return context.buy.Find(id);
         }
 
         public IQueryable<Buy> get()
         {
-            return context.buys;
+            return context.buy;
+        }
+
+        public IQueryable<City> GetCities()
+        {
+            return context.cities;
         }
     }
 }

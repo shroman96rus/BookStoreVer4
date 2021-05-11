@@ -115,6 +115,9 @@ namespace BookStoreVer4.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
+
                     b.Property<int>("bookId")
                         .HasColumnType("int");
 
@@ -135,7 +138,7 @@ namespace BookStoreVer4.Migrations
 
                     b.HasIndex("clientid");
 
-                    b.ToTable("buys");
+                    b.ToTable("buy");
                 });
 
             modelBuilder.Entity("BookStoreVer4.Models.Purchases.City", b =>

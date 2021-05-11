@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreVer4.Migrations
 {
-    public partial class addClientRole : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,20 @@ namespace BookStoreVer4.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "cities",
+                columns: table => new
+                {
+                    cityid = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    cityName = table.Column<string>(nullable: true),
+                    deliveryTime = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cities", x => x.cityid);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "clients",
                 columns: table => new
                 {
@@ -30,8 +44,8 @@ namespace BookStoreVer4.Migrations
                     lastName = table.Column<string>(nullable: true),
                     clientPassword = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<int>(nullable: false),
-                    role = table.Column<string>(nullable: true)
+                    phoneNumber = table.Column<string>(nullable: true),
+                    clientRole = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,6 +96,41 @@ namespace BookStoreVer4.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "buy",
+                columns: table => new
+                {
+                    buyid = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    bookId = table.Column<int>(nullable: false),
+                    clientid = table.Column<int>(nullable: false),
+                    cityid = table.Column<int>(nullable: false),
+                    buyDescription = table.Column<string>(nullable: true),
+                    amount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_buy", x => x.buyid);
+                    table.ForeignKey(
+                        name: "FK_buy_books_bookId",
+                        column: x => x.bookId,
+                        principalTable: "books",
+                        principalColumn: "bookId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_buy_cities_cityid",
+                        column: x => x.cityid,
+                        principalTable: "cities",
+                        principalColumn: "cityid",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_buy_clients_clientid",
+                        column: x => x.clientid,
+                        principalTable: "clients",
+                        principalColumn: "clientid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_books_authorId",
                 table: "books",
@@ -91,12 +140,33 @@ namespace BookStoreVer4.Migrations
                 name: "IX_books_genreId",
                 table: "books",
                 column: "genreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_buy_bookId",
+                table: "buy",
+                column: "bookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_buy_cityid",
+                table: "buy",
+                column: "cityid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_buy_clientid",
+                table: "buy",
+                column: "clientid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "buy");
+
+            migrationBuilder.DropTable(
                 name: "books");
+
+            migrationBuilder.DropTable(
+                name: "cities");
 
             migrationBuilder.DropTable(
                 name: "clients");

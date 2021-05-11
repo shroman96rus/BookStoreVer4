@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IQueryable<Buy>
+@using BookStoreVer4.Models.Purchases
+
+<h1>Basket</h1>
+
+<div class="container border">
+    @foreach (var item in Model)
+    {
+    <div class="row m-4">
+        <div class="col-auto m-2">
+            @item.Book.Author.nameAuthor
+        </div>
+        <div class="col-auto m-2">
+            @item.Book.title
+        </div>
+        <div class="col-auto m-2">
+            @item.City.cityName
+        </div>
+        <div class="col-auto m-2">
+            @item.Client.firstName
+        </div>
+    </div>
+    }
+</div>
+
+
+

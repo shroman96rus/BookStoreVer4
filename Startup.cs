@@ -34,6 +34,7 @@ namespace BookStoreVer4
             services.AddDbContext<BookStoreContext>(options => options.UseMySql((Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddTransient<IClients, ClientsRepository>();
             services.AddTransient<IBooks, BooksRepository>();
+            services.AddTransient<IBuy, BuyRepository>();
 
             //Аутентификация
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
