@@ -9,54 +9,45 @@ main{
 
 .buy__grid {
     display: grid;
-    grid-template-columns: 20% 1fr;
+    /*grid-template-columns: repeat(4, 1fr);*/
+    grid-template: 1fr / repeat(4,auto);
     grid-auto-rows: minmax(30px, auto);
+    grid-auto-columns: minmax(30px, auto);
+    grid-gap: 10px;
 }
 
+  
+
 .buy__title {
-    grid-column: 1 / 3;
-    grid-row: 1;
+     grid-column: 1 / 5;
+     grid-row: 1;
 }
 
 .buy__logo {
-    grid-row: 2/7;
+    /*grid-column: 1 / 2;*/
+    grid-row: 2/8;
 }
 
 .buy__description {
-    grid-column: 2 / 3;
-    grid-row: 4;
+    grid-column: 2 / 4;
+    grid-row: 2/4;
 }
 
 .buy__count_book {
-    grid-row: 2;
+    grid-row: 4/5;
 }
 
 .buy__price {
-    grid-row: 3;
+
+    grid-row: 5/6;
 }
 
-.buy__order_label {
-    margin-top: 20px;
+.buy__order {
+    padding: 10px;
     font-size: 20px;
-    display: block;
+    grid-row: 6/8;
+    grid-column: 2 / 3;
+    /*display: block;*/
 }
 
-.buy__order_input {
-    display: block;
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    box-shadow: inset 5px 5px 10px yellow;
-    border: 3px solid yellow;
-    border-radius: 20px;
-}
 
-.buy__order_button {
-    margin-top: 10px;
-    background: none;
-    font-size: 14px;
-    color: white;
-    padding: 5px 10px;
-    background: grey;
-    border-radius: 20px;
-}

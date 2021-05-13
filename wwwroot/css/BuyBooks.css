@@ -34,22 +34,55 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0px -15px;
+    /*border: 2px solid red;*/
 }
 
 .books__element {
     padding: 10px 15px;
     margin: 10px 10px;
-    flex: 0 1 15%;
+    flex: 0 0 45%;
     border-radius: 30px 10px 30px 10px;
     border: 2px solid grey;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(20px, auto);
 }
 
-    .books__element div {
-        padding: 4px;
-    }
 
+.books__element_title {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    overflow: auto;
+   
+}
 
+.books__element_author {
+    grid-column: 2 / 3;
+    grid-row: 2/3;
+    /*border: 2px dashed yellow;*/
+    
+}
 
-.books__element_image img {
-    max-width: 150px;
+.books__element_image {
+    grid-column: 1 / 2;
+    grid-row: 2/8;
+}
+
+.books__element_genre {
+    grid-column: 2 / 3;
+    grid-row: 3/4;
+    /*border: 2px dashed yellow;*/
+}
+
+.books__element_price {
+    grid-column: 2 / 3;
+    grid-row: 4/5;
+    /*border: 2px dashed yellow;*/
+}
+
+.books__element_buy {
+    grid-column: 2 / 3;
+    grid-row: 6/8;
+    /*border: 2px dashed yellow;*/
 }

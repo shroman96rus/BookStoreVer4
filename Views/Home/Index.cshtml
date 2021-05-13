@@ -41,28 +41,32 @@
         <div class="books__change">
             @foreach (var item in Model)
             {
-                <div class="books__element">
-                    <div class="books__element_title">
-                        <h4><a asp-controller="Home" asp-action="BookDetail" asp-route-id="@item.bookId">@item.title</a></h4>
-                    </div>
-                    <div class="books__element_image">
-                        <img src="@item.imagePath " alt="@item.title">
-                    </div>
-                    <div class="books__element_author">
-                        @item.Author.nameAuthor
-                    </div>
-                    <div class="books__element_price"> @item.price руб.</div>
-                    <div class="books__element_buy">
-                         <div>
-                             <form asp-action="Order" asp-controller="Buy" method="get">
+            <div class="books__element">
+                <div class="books__element_title">
+                    <h4><a asp-controller="Home" asp-action="BookDetail" asp-route-id="@item.bookId">@item.title</a></h4>
+                </div>
+                <div class="books__element_image">
+                    <img src="@item.imagePath " alt="@item.title">
 
-                                 <label class="form-label">Введите количество</label>
-                                 <input class="form-control" name="amount"  />
-                                 <button class=" mt-3 btn btn-primary" type="submit" asp-action="Order" asp-controller="Buy" asp-route-id="@item.bookId" asp-route-amount="amount">Купить</button>
-                             </form>
-                         </div>
+                </div>
+                <div class="books__element_author">
+                    Автор: @item.Author.nameAuthor
+                </div>
+                <div class="books__element_genre">
+                    Жанр: @item.Genre.nameGenre
+                </div>
+                <div class="books__element_price"> Стоимость одной книги: @item.price руб.</div>
+                <div class="books__element_buy">
+                    <div>
+                        <form asp-action="Order" asp-controller="Buy" method="get">
+
+                            <label class="form-label">Введите количество:</label>
+                            <input class="form-control" name="amount" />
+                            <button class=" mt-3 btn btn-primary" type="submit" asp-action="Order" asp-controller="Buy" asp-route-id="@item.bookId" asp-route-amount="amount">Купить</button>
+                        </form>
                     </div>
                 </div>
+            </div>
             }
 
 

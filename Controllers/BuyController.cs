@@ -55,9 +55,12 @@ namespace BookStoreVer4.Controllers
             if (ModelState.IsValid)
             {
                 Buys.CreateOrder(order);
-                RedirectToAction("Basket", "Basket");
+                Book buyBook = Books.GetBook(order.bookId);
+                buyBook.amout = buyBook.amout -order.amount;
+                Books.updateBook(buyBook.bookId);
+                return RedirectToAction("Basket", "Basket");
             }
-            return View(order);
+            return View();
         }
 
     }

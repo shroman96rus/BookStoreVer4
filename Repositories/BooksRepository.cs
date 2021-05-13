@@ -47,7 +47,7 @@ namespace BookStoreVer4.Repositories
         public void updateBook(int id)
         {
             context.books.Attach(GetBook(id)).State = EntityState.Modified;
-
+            context.SaveChanges();
         }
     }
 }
