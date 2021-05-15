@@ -21,6 +21,7 @@ namespace BookStoreVer4.Repositories
             context.buy.Include(i => i.Client).Load();
             context.buy.Include(i => i.Book.Author).Load();
             context.buy.Include(i => i.Book.Genre).Load();
+            context.buy.Include(i => i.Steps).Load();
         }
 
         public void CreateOrder(Buy buy)

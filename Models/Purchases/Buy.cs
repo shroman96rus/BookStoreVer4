@@ -17,6 +17,8 @@ namespace BookStoreVer4.Models.Purchases
 
         public int cityid { get; set; }
 
+        public int stepid { get; set; }
+
         public string buyDescription { get; set; }
 
         public int amount { get; set; }
@@ -26,5 +28,7 @@ namespace BookStoreVer4.Models.Purchases
         public virtual Client Client { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual Steps Steps { get; set; }
     }
 }

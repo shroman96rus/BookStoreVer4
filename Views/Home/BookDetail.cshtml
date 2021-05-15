@@ -21,8 +21,8 @@
                 </div>
                 <div class="buy__count_book">Количество экземпляров на складе: @Model.amout шт</div>
                 <div class="buy__price">Стоимость одной книги: @Model.price руб</div>
-                <div class="by__order">
-                    <form asp-action="Order" asp-controller="Buy" method="get">
+                <div class="buy__order">
+                    <form class="by__order-form" asp-action="Order" asp-controller="Buy" method="get">
                         <label for="" class="buy__order_label">Количество штук для заказа</label>
                         <input class="form-control" name="amount" placeholder="кол-во" /> 
                         <button class=" mt-3 btn btn-primary" type="submit" asp-action="Order" asp-controller="Buy" asp-route-id="@Model.bookId" asp-route-amount="amount"> Оформить покупку</button>

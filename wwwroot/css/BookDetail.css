@@ -12,7 +12,7 @@ main{
     /*grid-template-columns: repeat(4, 1fr);*/
     grid-template: 1fr / repeat(4,auto);
     grid-auto-rows: minmax(30px, auto);
-    grid-auto-columns: minmax(30px, auto);
+    /*grid-auto-columns: minmax(30px, auto);*/
     grid-gap: 10px;
 }
 
@@ -30,24 +30,25 @@ main{
 
 .buy__description {
     grid-column: 2 / 4;
-    grid-row: 2/4;
+    grid-row: 2/3;
 }
 
 .buy__count_book {
-    grid-row: 4/5;
+    grid-row: 3/4;
 }
 
 .buy__price {
-
-    grid-row: 5/6;
+    grid-row: 4/5;
+    /*border: 2px solid red;*/
 }
 
 .buy__order {
+    /*border:2px solid red;*/
     padding: 10px;
     font-size: 20px;
-    grid-row: 6/8;
+    grid-row: 5/6;
     grid-column: 2 / 3;
-    /*display: block;*/
+    display: block;
 }
 
 

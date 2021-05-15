@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreVer4.Migrations
 {
-    public partial class initial : Migration
+    public partial class addstep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,6 +66,19 @@ namespace BookStoreVer4.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "steps",
+                columns: table => new
+                {
+                    stepid = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    nameStep = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_steps", x => x.stepid);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "books",
                 columns: table => new
                 {
@@ -105,12 +118,20 @@ namespace BookStoreVer4.Migrations
                     bookId = table.Column<int>(nullable: false),
                     clientid = table.Column<int>(nullable: false),
                     cityid = table.Column<int>(nullable: false),
+                    stepid = table.Column<int>(nullable: false),
                     buyDescription = table.Column<string>(nullable: true),
-                    amount = table.Column<int>(nullable: false)
+                    amount = table.Column<int>(nullable: false),
+                    Stepsstepid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_buy", x => x.buyid);
+                    table.ForeignKey(
+                        name: "FK_buy_steps_Stepsstepid",
+                        column: x => x.Stepsstepid,
+                        principalTable: "steps",
+                        principalColumn: "stepid",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_buy_books_bookId",
                         column: x => x.bookId,
@@ -142,6 +163,11 @@ namespace BookStoreVer4.Migrations
                 column: "genreId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_buy_Stepsstepid",
+                table: "buy",
+                column: "Stepsstepid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_buy_bookId",
                 table: "buy",
                 column: "bookId");
@@ -161,6 +187,9 @@ namespace BookStoreVer4.Migrations
         {
             migrationBuilder.DropTable(
                 name: "buy");
+
+            migrationBuilder.DropTable(
+                name: "steps");
 
             migrationBuilder.DropTable(
                 name: "books");

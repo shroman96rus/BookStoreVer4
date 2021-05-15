@@ -54,6 +54,7 @@ namespace BookStoreVer4.Controllers
         {
             if (ModelState.IsValid)
             {
+                order.stepid = 1;
                 Buys.CreateOrder(order);
                 Book buyBook = Books.GetBook(order.bookId);
                 buyBook.amout = buyBook.amout -order.amount;

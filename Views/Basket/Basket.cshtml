@@ -4,30 +4,63 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Basket.css" />
+</head>
+
 @model IQueryable<Buy>
 @using BookStoreVer4.Models.Purchases
 
-<h1>Basket</h1>
+<h2>В вашей корзине находится @Model.Count() заказов</h2>
 
-<div class="container border">
-    @foreach (var item in Model)
-    {
-    <div class="row m-4">
-        <div class="col-auto m-2">
-            @item.Book.Author.nameAuthor
+<div class="basket_checkout">
+    <div class="items-basket">
+        @foreach (var item in Model)
+        {
+            <div class="item-basket">
+                <div class="item-basket__title">
+                    @item.Book.title
+                </div>
+                <div class="item-basket__logo">
+                    <img src="@item.Book.imagePath" alt="@item.Book.title " />
+                </div>
+                <div class="item-basket__count">
+                    Количество заказанных экземпляров: @item.amount
+                </div>
+                <div class="item-basket__price">
+                    Стоимость одной книги: @item.Book.price
+                </div>
+                <div class="item-basket__summ">
+                    Общая стоимость заказанных книг составляет: @{ var sum = item.Book.price * item.amount;} @sum руб.
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="checkout">
+        <div class="checkout__title">
+            Давайте оформим заказ
         </div>
-        <div class="col-auto m-2">
-            @item.Book.title
+        <div class="checkout__description">
+            Вы необходимо оплатить @Model.Count() заказа на обшаю сумму:
         </div>
-        <div class="col-auto m-2">
-            @item.City.cityName
+        <div class="checkout__summ">
+            @{ decimal allSumm = 0;
+                foreach (var item in Model)
+                {
+                    allSumm = allSumm + (item.Book.price * item.amount);
+                }
+            }
+           @allSumm рубля
         </div>
-        <div class="col-auto m-2">
-            @item.Client.firstName
+        <div class="checkout__button">
+            <button class="btn btn-primary mb-3">Оформить покупку</button>
         </div>
     </div>
-    }
 </div>
+
+
+
 
 
 
