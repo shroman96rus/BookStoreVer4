@@ -1,5 +1,6 @@
 ﻿using BookStoreVer4.Interfaces;
 using BookStoreVer4.Models.Books;
+using BookStoreVer4.Models.Purchases;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,7 @@ namespace BookStoreVer4.Controllers
        
         private readonly IBooks Books;
         readonly IWebHostEnvironment _appEnvironment;
+        
 
         public SallerController(IBooks Books, IWebHostEnvironment appEnvironment)
         {
@@ -28,6 +30,7 @@ namespace BookStoreVer4.Controllers
         public IActionResult Index()
         {
             var model = Books.get();
+            
             return View(model);
         }
 

@@ -1,0 +1,46 @@
+﻿
+.Title h2{
+    font-size: 24px;
+    font-weight:800;
+}
+
+.Title  {
+    font-size: 18px;
+    font-weight:600;
+}
+
+.description{
+    margin: 20px auto;
+    justify-content:center;
+    font-size: 18px;
+}
+
+.formOrder{
+   
+    padding: 15px 30px;
+}
+
+.formOrder__city p{
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.formOrder__form-check{
+    padding: 5px 0px 5px 30px;
+}
+
+.formOrder__adress{
+    margin-top: 20px;
+}
+
+
+.formOrder__descriptionDelivery {
+    margin-top: 20px;
+}
+
+.formOrder__button{
+   
+    margin-top: 20px;
+
+}

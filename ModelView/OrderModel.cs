@@ -16,7 +16,7 @@ namespace BookStoreVer4.ModelView
 
         public Client client { get; set; }
 
-        public IQueryable<City> cities { get; set; }
+        public IEnumerable<City> cities { get; set; }
 
         public Buy order { get; set; }
 

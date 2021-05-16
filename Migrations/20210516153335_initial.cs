@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreVer4.Migrations
 {
-    public partial class addstep : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -120,18 +120,11 @@ namespace BookStoreVer4.Migrations
                     cityid = table.Column<int>(nullable: false),
                     stepid = table.Column<int>(nullable: false),
                     buyDescription = table.Column<string>(nullable: true),
-                    amount = table.Column<int>(nullable: false),
-                    Stepsstepid = table.Column<int>(nullable: true)
+                    amount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_buy", x => x.buyid);
-                    table.ForeignKey(
-                        name: "FK_buy_steps_Stepsstepid",
-                        column: x => x.Stepsstepid,
-                        principalTable: "steps",
-                        principalColumn: "stepid",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_buy_books_bookId",
                         column: x => x.bookId,
@@ -150,6 +143,12 @@ namespace BookStoreVer4.Migrations
                         principalTable: "clients",
                         principalColumn: "clientid",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_buy_steps_stepid",
+                        column: x => x.stepid,
+                        principalTable: "steps",
+                        principalColumn: "stepid",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -161,11 +160,6 @@ namespace BookStoreVer4.Migrations
                 name: "IX_books_genreId",
                 table: "books",
                 column: "genreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_buy_Stepsstepid",
-                table: "buy",
-                column: "Stepsstepid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_buy_bookId",
@@ -181,15 +175,17 @@ namespace BookStoreVer4.Migrations
                 name: "IX_buy_clientid",
                 table: "buy",
                 column: "clientid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_buy_stepid",
+                table: "buy",
+                column: "stepid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "buy");
-
-            migrationBuilder.DropTable(
-                name: "steps");
 
             migrationBuilder.DropTable(
                 name: "books");
@@ -199,6 +195,9 @@ namespace BookStoreVer4.Migrations
 
             migrationBuilder.DropTable(
                 name: "clients");
+
+            migrationBuilder.DropTable(
+                name: "steps");
 
             migrationBuilder.DropTable(
                 name: "authors");

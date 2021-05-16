@@ -25,6 +25,6 @@ namespace BookStoreVer4.Database
         //Подключенеи к таблицам города и покупки
         public DbSet<City> cities { get; set; }
         public DbSet<Buy> buy { get; set; }
-        public DbSet<Steps> steps { get; set; }
+        public DbSet<Step> steps { get; set; }
     }
 }

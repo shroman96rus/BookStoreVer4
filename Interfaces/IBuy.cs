@@ -12,8 +12,10 @@ namespace BookStoreVer4.Interfaces
 
         public Buy GetOrder(int id);
 
-        public IQueryable<Buy> get();
+        public IEnumerable<Buy> get();
 
-        public IQueryable<City> GetCities();
+        public IEnumerable<City> GetCities();
+
+        public void UpdateBuy(int id);
     }
 }

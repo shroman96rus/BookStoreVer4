@@ -1,4 +1,6 @@
 ﻿using BookStoreVer4.Interfaces;
+using BookStoreVer4.Models.Purchases;
+using BookStoreVer4.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,46 @@ namespace BookStoreVer4.Controllers
             this.Buys = Buys;
         }
 
+        //public IQueryable<Buy> clientBuys 
+        //{
+        //    get 
+        //    {
+        //     return Buys.get().Where(i => i.Client.email == User.Identity.Name);
+        //    }
+            
+        //}
+
         public IActionResult Basket()
         {
-            var model = Buys.get().Where(i => i.Client.email == User.Identity.Name);
+            
+            decimal summOers = 0;
+
+            foreach (var item in Buys.get().Where(i => i.Client.email == User.Identity.Name))
+            {
+                summOers = summOers + (item.Book.price * item.amount);
+            }
+
+            BasketModel model = new BasketModel
+            {
+                orderBuys = Buys.get().Where(i => i.Client.email == User.Identity.Name),
+                summOrdersClient = summOers
+            };
+            //var model = Buys.get().Where(i => i.Client.email == User.Identity.Name);
             return View(model);
+        }
+
+        public IActionResult BasketConfirm(string test)
+        {
+            if (test != null)
+            {
+                foreach (var item in Buys.get().Where(i => i.Client.email == User.Identity.Name))
+                {
+                    item.stepid = 2;
+
+                    Buys.UpdateBuy(item.buyid);
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

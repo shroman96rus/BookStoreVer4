@@ -21,6 +21,8 @@ namespace BookStoreVer4.Models.Purchases
 
         public string buyDescription { get; set; }
 
+        public string adressDelivery { get; set; }
+
         public int amount { get; set; }
 
         public virtual Book Book { get; set; }
@@ -29,6 +31,6 @@ namespace BookStoreVer4.Models.Purchases
 
         public virtual City City { get; set; }
 
-        public virtual Steps Steps { get; set; }
+        public virtual Step Step { get; set; }
     }
 }

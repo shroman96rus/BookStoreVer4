@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStoreVer4.Models.Purchases
 {
-    public class Steps
+    public class Step
     {
         [Key]
         public int stepid { get; set; }

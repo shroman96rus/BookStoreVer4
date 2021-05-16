@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="~/css/Basket.css" />
 </head>
 
-@model IQueryable<Buy>
+@model BookStoreVer4.ModelView.BasketModel
 @using BookStoreVer4.Models.Purchases
 
-<h2>В вашей корзине находится @Model.Count() заказов</h2>
+<h2>В вашей корзине находится @Model.orderBuys.Count() заказов</h2>
 
 <div class="basket_checkout">
     <div class="items-basket">
-        @foreach (var item in Model)
+        @foreach (var item in Model.orderBuys)
         {
             <div class="item-basket">
                 <div class="item-basket__title">
@@ -42,22 +42,34 @@
             Давайте оформим заказ
         </div>
         <div class="checkout__description">
-            Вы необходимо оплатить @Model.Count() заказа на обшаю сумму:
+            Вы необходимо оплатить @Model.orderBuys.Count() заказа на обшаю сумму:
         </div>
         <div class="checkout__summ">
-            @{ decimal allSumm = 0;
-                foreach (var item in Model)
-                {
-                    allSumm = allSumm + (item.Book.price * item.amount);
-                }
-            }
-           @allSumm рубля
+            @Model.summOrdersClient рублей
         </div>
-        <div class="checkout__button">
-            <button class="btn btn-primary mb-3">Оформить покупку</button>
+
+        <div class="checkout__change-pay-method">
+            <p> Выборите способ оплаты заказа</p>
+            <div class="checkout__form-check">
+                <input class="form-check-input" type="radio" value="">
+                <label class="form-check-label">
+                    Безналичный расчет
+                </label>
+            </div>
+            <div class="checkout__form-check">
+                <input class="form-check-input" type="radio" value="">
+                <label class="form-check-label">
+                    Наличными при получении
+                </label>
+            </div>
+
+        </div>
+
+            <div class="checkout__button">
+                <a asp-action="BasketConfirm" asp-controller="Basket" asp-route-test="hgjhg" class="btn btn-primary mb-3">Оплатить заказ</a>
+            </div>
         </div>
     </div>
-</div>
 
 
 
