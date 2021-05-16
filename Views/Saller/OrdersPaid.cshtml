@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "OrdersPaid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using BookStoreVer4.Models.Purchases
+@model IEnumerable<Buy> 
+
+<div class="title">
+    <h3>Информация по всем заказам</h3>
+</div>
+
+<div class="Table_Book">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя Фамилия</th>
+                <th>Емайл Клиента</th>
+                <th>Телефон клиента</th>
+                <th>Название и автор книги</th>
+                <th>Заказанное количество</th>
+                <th>Город доставки</th>
+                <th>Адрес доставки</th>
+                <th>Комментарии к доставке</th>
+                <th>Статус заказа</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.Client.firstName @item.Client.lastName</td>
+                <td>@item.Client.email</td>
+                <td>@item.Client.phoneNumber</td>
+                <td>@item.Book.Author.nameAuthor: @item.Book.title</td>
+                <td>@item.amount</td>
+                <td>@item.City.cityName</td>
+                <td>@item.adressDelivery</td>
+                <td>@item.buyDescription</td>
+                <td>@item.Step.nameStep</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

@@ -32,31 +32,26 @@ namespace BookStoreVer4.Controllers
             
             decimal summOers = 0;
 
-            foreach (var item in Buys.get().Where(i => i.Client.email == User.Identity.Name))
+            foreach (var item in Buys.get().Where(i => (i.Client.email == User.Identity.Name) && (i.stepid == 1)))
             {
                 summOers = summOers + (item.Book.price * item.amount);
             }
 
             BasketModel model = new BasketModel
             {
-                orderBuys = Buys.get().Where(i => i.Client.email == User.Identity.Name),
+                orderBuys = Buys.get().Where(i => (i.Client.email == User.Identity.Name) && (i.stepid == 1)),
                 summOrdersClient = summOers
             };
             //var model = Buys.get().Where(i => i.Client.email == User.Identity.Name);
             return View(model);
         }
 
-        public IActionResult BasketConfirm(string test)
+        public IActionResult BasketConfirm(int id)
         {
-            if (test != null)
-            {
-                foreach (var item in Buys.get().Where(i => i.Client.email == User.Identity.Name))
-                {
-                    item.stepid = 2;
+            var test = Buys.GetOrder(id);
+            test.stepid = 2;
+            Buys.UpdateBuy(id);
 
-                    Buys.UpdateBuy(item.buyid);
-                }
-            }
             return RedirectToAction("Index", "Home");
         }
     }

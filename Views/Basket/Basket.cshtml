@@ -17,59 +17,32 @@
     <div class="items-basket">
         @foreach (var item in Model.orderBuys)
         {
-            <div class="item-basket">
-                <div class="item-basket__title">
-                    @item.Book.title
+           
+                <div class="item-basket">
+                    <div class="item-basket__title">
+                        @item.Book.title
+                    </div>
+                    <div class="item-basket__logo">
+                        <img src="@item.Book.imagePath" alt="@item.Book.title " />
+                    </div>
+                    <div class="item-basket__count">
+                        Количество заказанных экземпляров: @item.amount
+                    </div>
+                    <div class="item-basket__price">
+                        Стоимость одной книги: @item.Book.price
+                    </div>
+                    <div class="item-basket__summ">
+                        Общая стоимость заказанных книг составляет: @{ var sum = item.Book.price * item.amount;} @sum руб.
+                    </div>
+                    <div class="checkout__button">
+                        <a asp-action="BasketConfirm" asp-controller="Basket" asp-route-id="@item.buyid" class="btn btn-primary mb-3">Оплатить заказ</a>
+                    </div>
                 </div>
-                <div class="item-basket__logo">
-                    <img src="@item.Book.imagePath" alt="@item.Book.title " />
-                </div>
-                <div class="item-basket__count">
-                    Количество заказанных экземпляров: @item.amount
-                </div>
-                <div class="item-basket__price">
-                    Стоимость одной книги: @item.Book.price
-                </div>
-                <div class="item-basket__summ">
-                    Общая стоимость заказанных книг составляет: @{ var sum = item.Book.price * item.amount;} @sum руб.
-                </div>
-            </div>
-        }
+         }
     </div>
 
-    <div class="checkout">
-        <div class="checkout__title">
-            Давайте оформим заказ
-        </div>
-        <div class="checkout__description">
-            Вы необходимо оплатить @Model.orderBuys.Count() заказа на обшаю сумму:
-        </div>
-        <div class="checkout__summ">
-            @Model.summOrdersClient рублей
-        </div>
-
-        <div class="checkout__change-pay-method">
-            <p> Выборите способ оплаты заказа</p>
-            <div class="checkout__form-check">
-                <input class="form-check-input" type="radio" value="">
-                <label class="form-check-label">
-                    Безналичный расчет
-                </label>
-            </div>
-            <div class="checkout__form-check">
-                <input class="form-check-input" type="radio" value="">
-                <label class="form-check-label">
-                    Наличными при получении
-                </label>
-            </div>
-
-        </div>
-
-            <div class="checkout__button">
-                <a asp-action="BasketConfirm" asp-controller="Basket" asp-route-test="hgjhg" class="btn btn-primary mb-3">Оплатить заказ</a>
-            </div>
-        </div>
-    </div>
+    
+</div>
 
 
 

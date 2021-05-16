@@ -18,13 +18,15 @@ namespace BookStoreVer4.Controllers
     {
        
         private readonly IBooks Books;
+        private readonly IBuy Buy;
         readonly IWebHostEnvironment _appEnvironment;
         
 
-        public SallerController(IBooks Books, IWebHostEnvironment appEnvironment)
+        public SallerController(IBooks Books, IWebHostEnvironment appEnvironment, IBuy Buy)
         {
             this.Books = Books;
             _appEnvironment = appEnvironment;
+            this.Buy = Buy;
         }
 
         public IActionResult Index()
@@ -61,6 +63,12 @@ namespace BookStoreVer4.Controllers
                 }
             }
             return RedirectToAction("Index", "Saller");
+        }
+
+        public IActionResult OrdersPaid()
+        {
+            var model = Buy.get();
+            return View(model);
         }
 
     }
