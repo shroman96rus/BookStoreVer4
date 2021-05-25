@@ -1,4 +1,5 @@
 ﻿using BookStoreVer4.Interfaces;
+using BookStoreVer4.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,29 @@ namespace BookStoreVer4.Controllers
             Books = books;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sort)
         {
-            var model = Books.get();
+            HomeIndexModel model = new HomeIndexModel();
+            
+            model.books = Books.get();
+
+            model.authors = Books.getAuthors();
+
+            model.genres = Books.getGenres();
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                foreach (var item in Books.getGenres())
+                {
+                    if (sort == item.nameGenre)
+                    {
+                        model.books = Books.get().Where(i => i.Genre.nameGenre == item.nameGenre);
+                    }
+                }
+
+            }
+           
+
             return View(model);
         }
 

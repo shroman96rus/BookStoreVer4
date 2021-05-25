@@ -1,6 +1,7 @@
 ﻿using BookStoreVer4.Interfaces;
 using BookStoreVer4.Models.Books;
 using BookStoreVer4.Models.Purchases;
+using BookStoreVer4.ModelView;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +39,13 @@ namespace BookStoreVer4.Controllers
 
         public IActionResult CreateBook()
         {
-            return View();
+            CreateBookModel model = new CreateBookModel()
+            {
+                authors = Books.getAuthors(),
+                genres = Books.getGenres()
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -58,6 +65,16 @@ namespace BookStoreVer4.Controllers
 
                     if (Books.GetBook(book.bookId) == null)
                 {
+                    if (book.Author != null)
+                    {
+                        book.Author.authorId = Books.getAuthors().Count() + 1;
+                        book.authorId = book.Author.authorId;
+                    }
+                    if (book.Genre != null)
+                    {
+                        book.Genre.genreId = Books.getGenres().Count() + 1;
+                        book.genreId = book.Genre.genreId;
+                    }
                     Books.createBook(book);
 
                 }

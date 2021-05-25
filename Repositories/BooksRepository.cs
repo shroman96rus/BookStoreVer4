@@ -39,6 +39,16 @@ namespace BookStoreVer4.Repositories
             return context.books;
         }
 
+        public IEnumerable<Author> getAuthors()
+        {
+            return context.authors;
+        }
+
+        public IEnumerable<Genre> getGenres()
+        {
+            return context.genres;
+        }
+
         public Book GetBook(int id)
         {
             return context.books.Find(id);

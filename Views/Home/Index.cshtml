@@ -1,6 +1,6 @@
 ﻿@using System.Security.Claims
 @using BookStoreVer4.Models.Books
-@model IQueryable<Book>
+@model BookStoreVer4.ModelView.HomeIndexModel
 
 <head>
     <meta charset="utf-8" />
@@ -27,11 +27,11 @@
             <h4>Выбор жанра</h4>
         </div>
         <ul class="genree__list">
-            <li>Фантастика</li>
-            <li>Роман</li>
-            <li>Поэма</li>
-            <li>Биография</li>
-            <li>Детектив</li>
+            @foreach (var item in Model.genres )
+            {
+                <li><a asp-controller="Home" asp-action="Index" asp-route-sort="@item.nameGenre">@item.nameGenre</a> </li>
+            }
+            
         </ul>
     </section>
     <section class="books">
@@ -39,7 +39,7 @@
             <h2>Список книг доступных для покупки</h2>
         </article>
         <div class="books__change">
-            @foreach (var item in Model)
+            @foreach (var item in Model.books)
             {
             <div class="books__element">
                 <div class="books__element_title">

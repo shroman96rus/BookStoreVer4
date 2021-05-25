@@ -1,0 +1,28 @@
+﻿
+main {
+    display: block;
+}
+
+input {
+    width: auto;
+}
+
+.title h3 {
+    font-size: 28px;
+}
+
+.form-create-book__checbox-authors {
+    margin: 10px 0px;
+}
+
+.form-create-book__checbox-genre {
+    margin: 10px 0px;
+}
+
+.form-create-book__new-authors{
+    margin: 20px 0px;
+}
+
+.form-create-book__new-genres {
+    margin: 20px 0px;
+}

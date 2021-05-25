@@ -17,5 +17,9 @@ namespace BookStoreVer4.Interfaces
         public void updateBook(int id);
 
         public void deleteBook(int id);
+
+        public IEnumerable<Author> getAuthors();
+
+        public IEnumerable<Genre> getGenres();
     }
 }
