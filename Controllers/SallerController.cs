@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace BookStoreVer4.Controllers
 {
     [Authorize(Policy = "saller")]
+    [Authorize(Policy = "Client")]
     public class SallerController : Controller
     {
        
@@ -85,6 +86,27 @@ namespace BookStoreVer4.Controllers
         public IActionResult OrdersPaid()
         {
             var model = Buy.get();
+            return View(model);
+        }
+
+        public IActionResult OrderDetail(int id, string step)
+        {
+            var model = Buy.GetOrder(id);
+
+            if (step != null)
+            {
+                switch (step)
+                {
+                    case "Упакован": model.stepid = 6; Buy.UpdateBuyStep(model);  break;
+                    case "Отправлен": model.stepid = 3; Buy.UpdateBuyStep(model); break;
+                    case "Прибыл": model.stepid = 4; Buy.UpdateBuyStep(model); break;
+                    case "Доставлен": model.stepid = 5; Buy.UpdateBuyStep(model); break;
+                    default:
+                        break;
+                }
+            }
+
+            
             return View(model);
         }
 

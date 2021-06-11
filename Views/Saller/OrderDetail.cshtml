@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Детали заказа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/OrderDetail.css" />
+</head>
+
+@model BookStoreVer4.Models.Purchases.Buy
+
+<h2>Детали заказа</h2>
+
+<dir class="Order_table">
+    <ul class="list-group list-group-flush Order_table__list">
+        <li class="list-group-item"><span class="Order_table__title">Клиент:</span> @Model.Client.firstName @Model.Client.lastName </li>
+        <li class="list-group-item"><span class="Order_table__title">Заказанная книга:</span> @Model.Book.title : @Model.Book.Author.nameAuthor - Количество заказанных экземпляров: @Model.amount шт. </li>
+        <li class="list-group-item"><span class="Order_table__title">Город доставки: </span> @Model.City.cityName | Время доставки до города составит @Model.City.deliveryTime дней</li>
+        <li class="list-group-item"><span class="Order_table__title">Адресс доставки: </span> @Model.adressDelivery  </li>
+        <li class="list-group-item"><span class="Order_table__title">Комментарии к заказу: </span>@Model.buyDescription</li>
+        <li class="list-group-item"><span class="Order_table__title">Статус заказа на данный момент: </span><span class="Order_table__status_order">@Model.Step.nameStep</span></li>
+        <li class="list-group-item">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <a asp-controller="Saller" asp-action="OrderDetail" asp-route-id="@Model.buyid" asp-route-step="Упакован" type="button" class="btn btn-secondary">Упакован</a>
+                <a asp-controller="Saller" asp-action="OrderDetail" asp-route-id="@Model.buyid" asp-route-step="Отправлен" type="button" class="btn btn-secondary">Отправлен</a>
+                <a asp-controller="Saller" asp-action="OrderDetail" asp-route-id="@Model.buyid" asp-route-step="Прибыл" type="button" class="btn btn-secondary">Прибыл в город назначения</a>
+                <a asp-controller="Saller" asp-action="OrderDetail" asp-route-id="@Model.buyid" asp-route-step="Доставлен" type="button" class="btn btn-secondary">Доставлен</a>
+            </div>
+        </li>
+    </ul>
+</dir>

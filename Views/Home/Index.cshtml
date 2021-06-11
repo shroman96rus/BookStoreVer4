@@ -16,7 +16,7 @@
     @if (User.FindFirst(i => i.Type == ClaimTypes.Role).Value == "saller")
     {
 
-        <a asp-controller="Saller" asp-action="index">Открыть режим управления книгами и заказами </a>
+        <a class="Saler_mode"  asp-controller="Saller" asp-action="index">Открыть режим управления книгами и заказами </a>
     }
 }
 

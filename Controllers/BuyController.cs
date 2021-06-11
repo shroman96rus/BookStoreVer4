@@ -3,6 +3,7 @@ using BookStoreVer4.Models.Books;
 using BookStoreVer4.Models.Clients;
 using BookStoreVer4.Models.Purchases;
 using BookStoreVer4.ModelView;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace BookStoreVer4.Controllers
 {
+    [Authorize(Policy = "saller")]
+    [Authorize(Policy = "saller")]
     public class BuyController : Controller
     {
         readonly IBuy Buys;
@@ -43,6 +46,10 @@ namespace BookStoreVer4.Controllers
                     cities = Buys.GetCities()
                 };
                 return View(model);
+            }
+            else
+            {
+                RedirectToAction("Login", "Account");
             }
            
             return RedirectToAction("Index", "Home");

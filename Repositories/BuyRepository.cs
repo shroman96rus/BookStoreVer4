@@ -40,10 +40,17 @@ namespace BookStoreVer4.Repositories
             return context.buy;
         }
 
-        public void UpdateBuy(int id)
+        public void UpdateBuy(Buy buy)
         {
-            context.buy.Attach(GetOrder(id)).State = EntityState.Modified;
+            context.buy.Attach(buy).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        public void UpdateBuyStep(Buy buy)
+        {
+            context.buy.Attach(buy).State = EntityState.Modified;
+            context.SaveChanges();
+            context.buy.Include(i => i.Step).Load();
         }
 
         public IEnumerable<City> GetCities()

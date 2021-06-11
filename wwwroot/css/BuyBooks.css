@@ -1,4 +1,16 @@
-﻿.books__row {
+﻿
+.Saler_mode{
+   
+    
+    box-shadow: 2px 2px 7px lightgrey;
+    margin: 0px 90px;
+    
+    padding: 8px;
+    color: black;
+    border-radius: 40px;
+}
+
+.books__row {
     display: flex;
     flex-direction: row;
 }

@@ -1,6 +1,7 @@
 ﻿using BookStoreVer4.Interfaces;
 using BookStoreVer4.Models.Purchases;
 using BookStoreVer4.ModelView;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace BookStoreVer4.Controllers
 {
+    [Authorize(Policy = "saller")]
+    [Authorize(Policy = "Client")]
     public class BasketController : Controller
     {
         readonly IBuy Buys;
@@ -18,14 +21,7 @@ namespace BookStoreVer4.Controllers
             this.Buys = Buys;
         }
 
-        //public IQueryable<Buy> clientBuys 
-        //{
-        //    get 
-        //    {
-        //     return Buys.get().Where(i => i.Client.email == User.Identity.Name);
-        //    }
-            
-        //}
+       
 
         public IActionResult Basket()
         {
@@ -50,7 +46,7 @@ namespace BookStoreVer4.Controllers
         {
             var test = Buys.GetOrder(id);
             test.stepid = 2;
-            Buys.UpdateBuy(id);
+            Buys.UpdateBuy(test);
 
             return RedirectToAction("Index", "Home");
         }

@@ -16,6 +16,8 @@ namespace BookStoreVer4.Interfaces
 
         public IEnumerable<City> GetCities();
 
-        public void UpdateBuy(int id);
+        public void UpdateBuy(Buy buy);
+
+        public void UpdateBuyStep(Buy buy);
     }
 }

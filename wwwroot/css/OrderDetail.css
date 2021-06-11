@@ -1,0 +1,19 @@
+﻿
+
+.Order_table{
+
+    border: 2px solid black;
+}
+
+.Order_table__title{
+    
+    font-weight:800;
+}
+
+.Order_table__status_order {
+    display: inline-block;
+    color: white;
+    background: grey;
+    padding: 10px 10px;
+    border-radius: 20px;
+}
